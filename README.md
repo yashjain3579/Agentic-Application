@@ -7,197 +7,221 @@ A simple and smart autonomous agent that understands what you're asking and exec
 Imagine you want to do complex calculations or string operations. Instead of writing code for each step, you just tell the agent what you want in natural language and it figures out the rest.
 
 For example:
-- \Add 5 and 10, then multiply by 2\ ? Returns 30
-- \Add 100 and 50, then divide by 3\ ? Returns 50
-- \Multiply 5 by 4, then to the power of 2\ ? Returns 400
+- `Add 5 and 10, then multiply by 2` → Returns 30
+- `Add 100 and 50, then divide by 3` → Returns 50
+- `Multiply 5 by 4, then to the power of 2` → Returns 400
 
-## Getting Started
+---
 
-### Installation
+## Quick Start (Copy & Paste These Commands)
 
-It's super simple - no complicated dependencies to install!
+### Step 1: Clone the Repo
 
-\\\ash
-# Clone the repository
+```bash
 git clone https://github.com/yashjain3579/Agentic-Application.git
 cd Agentic-Application
+```
 
-# That's it! No pip install needed for basic usage
-# (Only if you want to run tests, install pytest)
+### Step 2: Test It (Choose ONE)
+
+#### Option A: Run All 39 Tests (RECOMMENDED)
+
+```bash
 pip install pytest
-\\\
+python -m pytest tests/ -v
+```
 
-### Quick Example
+**You should see:**
+```
+======================== 39 passed in 0.XX seconds ========================
+```
 
-Let's try it out:
+#### Option B: Quick Test (Simplest - No pytest needed)
 
-\\\python
+Create a file called `test.py`:
+
+```python
 from agentic_app import create_app
 
-# Create the agent
 app = create_app()
 
-# Ask it to do something
-result = app.query(\"Add 5 and 10\")
-print(result)  # Output: 15
+# Test 1
+print(app.query("Add 5 and 10"))  # Output: 15
 
-# Try a more complex operation
-result = app.query(\"Add 5 and 10, then multiply by 2\")
-print(result)  # Output: 30
+# Test 2  
+print(app.query("Add 5 and 10, then multiply by 2"))  # Output: 30
 
-# Even more complex
-result = app.query(\"Add 100 and 50, then divide by 3, then to the power of 2\")
-print(result)  # Output: 2500
-\\\
+# Test 3
+print(app.query("Multiply 5 and 4, then to the power of 2"))  # Output: 400
+```
 
-### See It In Action
+Then run it:
 
-Create a file called \	est_it.py\:
+```bash
+python test.py
+```
 
-\\\python
+#### Option C: Detailed Test (See Each Step)
+
+Create a file called `test_detailed.py`:
+
+```python
 from agentic_app import create_app
 
 app = create_app(verbose=True)
 
-print(\"\\n--- Test 1: Simple Addition ---\")
-result = app.query(\"Add 5 and 10\")
-print(f\"Result: {result}\\n\")
+print("\n=== Test 1: Simple Math ===")
+result = app.query("Add 5 and 10")
+print(f"Final Result: {result}\n")
 
-print(\"--- Test 2: Chained Operations ---\")
-result = app.query(\"Add 1 and 1, then multiply by 10, then subtract 2\")
-print(f\"Result: {result}\\n\")
+print("=== Test 2: Chain Operations ===")
+result = app.query("Multiply 10 and 5, then divide by 2")
+print(f"Final Result: {result}\n")
 
-print(\"--- Test 3: Power Operation ---\")
-result = app.query(\"2 to the power of 8\")
-print(f\"Result: {result}\\n\")
-\\\
+print("=== Test 3: Complex ===")
+result = app.query("Add 10 and 5, then multiply by 2, then to the power of 2")
+print(f"Final Result: {result}\n")
+```
 
 Run it:
-\\\ash
-python test_it.py
-\\\
+
+```bash
+python test_detailed.py
+```
+
+### Which Option To Choose?
+
+| Option | What It Does |
+|--------|-------------|
+| **A** | Runs all 39 tests - BEST FIRST TIME! |
+| **B** | Quick manual test in 5 seconds |
+| **C** | Shows you what's happening at each step |
+
+**Recommendation:** Start with **Option A** - it proves everything works!
+
+---
 
 ## What Commands Does It Understand?
 
-The agent understands these operations:
+### Arithmetic Operations
 
-\\\
-Arithmetic:
-  - \"Add 5 and 10\" ? 15
-  - \"Subtract 5 from 20\" ? 15
-  - \"Multiply 5 and 4\" ? 20
-  - \"Divide 20 by 4\" ? 5
-  - \"2 to the power of 3\" ? 8
+```
+Add 5 and 10              → 15
+Subtract 5 from 20        → 15
+Multiply 5 and 4          → 20
+Divide 20 by 4            → 5
+2 to the power of 3       → 8
+Square 5                  → 25
+Square root of 16         → 4
+```
 
-String Operations:
-  - \"Concatenate hello and world\" ? helloworld
-  - \"Uppercase hello\" ? HELLO
-  - \"Lowercase HELLO\" ? hello
-  - \"Length of hello\" ? 5
+### String Operations
 
-Conversions:
-  - \"To integer 5.5\" ? 5
-  - \"To float 5\" ? 5.0
-  - \"To string 123\" ? \"123\"
-\\\
+```
+Uppercase hello           → HELLO
+Lowercase HELLO           → hello
+Length of hello           → 5
+Concatenate hello world   → helloworld
+Replace hello with hi     → hi
+```
 
-## How To Chain Commands
+### Chaining Operations (Use "then")
 
-Use \"then\" to chain operations:
+```
+Add 5 and 10, then multiply by 2
+→ (5 + 10) * 2 = 30
 
-\\\python
-# Do this step, then that step, then the other step
-result = app.query(\"Add 10 and 5, then multiply by 2, then to the power of 2\")
-print(result)  # ((10 + 5) * 2)^2 = 60000
-\\\
+Multiply 10 and 5, then divide by 2
+→ (10 * 5) / 2 = 25
+
+Add 10 and 5, then multiply by 2, then to the power of 2
+→ ((10 + 5) * 2)^2 = 900
+```
+
+---
 
 ## Project Structure
 
-\\\
+```
 Agentic-Application/
-+-- agentic_app/           # The main code
-�   +-- __init__.py        # Package setup
-�   +-- tools.py           # All the tools (18 total)
-�   +-- agent.py           # The smart brain
-�   +-- app.py             # Easy-to-use API
-�
-+-- tests/                 # Tests to make sure it works
-�   +-- __init__.py
-�   +-- test_agentic_app.py  # 39 tests
-�
-+-- README.md              # This file
-+-- requirements.txt       # Dependencies
-+-- .gitignore             # Git stuff
-\\\
+├── agentic_app/                 # The code
+│   ├── __init__.py
+│   ├── tools.py                 # 18 built-in tools
+│   ├── agent.py                 # The smart brain
+│   └── app.py                   # Easy-to-use API
+│
+├── tests/                       # Tests
+│   ├── __init__.py
+│   └── test_agentic_app.py      # 39 test cases
+│
+├── README.md                    # This file
+├── requirements.txt             # Dependencies
+└── .gitignore
+```
+
+---
 
 ## Features
 
- **Natural Language**: Just speak what you want  
- **Smart Chaining**: Automatically connects operations  
- **18 Built-in Tools**: Arithmetic, strings, conversions  
- **Add Your Own**: Easy to create custom tools  
- **Well Tested**: 39 tests, all passing  
- **Zero Dependencies**: No external packages needed  
- **Simple Code**: Clean, readable, ~500 lines  
+✓ **Natural Language**: Just tell it what you want  
+✓ **Smart Chaining**: Connect operations with "then"  
+✓ **18 Built-in Tools**: Arithmetic, strings, conversions  
+✓ **Zero Dependencies**: No external packages needed  
+✓ **Well Tested**: 39 tests, all passing  
+✓ **Easy to Extend**: Add your own custom tools  
 
-## Running Tests
+---
 
-Want to make sure everything works?
+## Need to Run Tests?
 
-\\\ash
+Make sure you have pytest:
+
+```bash
 pip install pytest
 python -m pytest tests/ -v
-\\\
+```
 
-You should see:
-\\\
-39 passed in 0.XX seconds ?
-\\\
+**Expected Result:**
+```
+======================== 39 passed in 0.XX seconds ========================
+```
 
-## Need More Help?
+---
 
-### Register Custom Tools
+## Want to Add Your Own Tool?
 
-Want to add your own operation? Easy!
-
-\\\python
+```python
 from agentic_app import create_app
 from agentic_app.tools import Tool, ToolParameter, ToolType
 
 app = create_app()
 
 # Create a custom tool
-square_tool = Tool(
-    name=\"square\",
-    description=\"Square a number\",
+square = Tool(
+    name="square",
+    description="Square a number",
     func=lambda x: x ** 2,
-    parameters=[ToolParameter(\"x\", \"float\")],
+    parameters=[ToolParameter("x", "float")],
     tool_type=ToolType.ARITHMETIC,
 )
 
 # Register it
-app.register_tool(square_tool)
+app.register_tool(square)
 
 # Use it
-tool = app.tool_registry.get(\"square\")
-result = tool.invoke(x=5)
+result = app.tool_registry.get("square").invoke(x=5)
 print(result)  # 25
-\\\
+```
 
-### List All Available Tools
-
-\\\python
-app = create_app()
-tools = app.list_tools()
-for tool in tools:
-    print(f\"{tool.name}: {tool.description}\")
-\\\
+---
 
 ## Requirements
 
 - **Python**: 3.8 or newer
-- **Dependencies**: None! (pytest is optional for testing)
+- **Dependencies**: ZERO for basic usage (pytest optional for testing)
 - **OS**: Windows, Mac, or Linux
+
+---
 
 ## Author
 
