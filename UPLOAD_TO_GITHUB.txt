@@ -1,0 +1,65 @@
+# Upload to GitHub - Step by Step
+
+Your repository: `git@github.com:yashjain3579/Agentic-Application.git`
+
+## Step 1: Install Git
+
+Choose default options. Restart after installation.
+
+## Step 2: After Git Installation, Run These Commands
+
+Open PowerShell or Command Prompt in your project folder:
+
+```bash
+cd C:\Users\Yash\Downloads\agentic-app
+
+# Configure git
+git config --global user.name "yashjain3579"
+git config --global user.email "yjain6688@gmail.com"
+
+# Initialize repository
+git init
+
+# Add all files
+git add .
+
+# Commit
+git commit -m "Initial commit - agentic app"
+
+# Add remote
+git remote add origin git@github.com:yashjain3579/Agentic-Application.git
+
+# Push to GitHub
+git branch -M main
+git push -u origin main
+```
+
+## Step 3: Verify Structure on GitHub
+
+After pushing, your GitHub repo should have this structure:
+
+```
+Agentic-Application/
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── agentic_app/
+│   ├── __init__.py
+│   ├── tools.py
+│   ├── agent.py
+│   └── app.py
+└── tests/
+    ├── __init__.py
+    └── test_agentic_app.py
+```
+
+NOT nested in a folder - directly in the root.
+
+## Current Status
+
+✓ Project structure is correct
+✓ Tests pass (39/39)
+✓ All unnecessary files deleted
+✓ Ready to upload
+
+Just install Git and run the commands above.
