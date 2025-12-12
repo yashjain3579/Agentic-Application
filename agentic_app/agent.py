@@ -146,6 +146,13 @@ class Agent:
             (r'([\d\.\-\{_\}]+)\s+to\s+(?:the\s+)?power\s+of\s+([\d\.\-\{_\}]+)', lambda m: ('power', (m.group(1), m.group(2)))),
             (r'raise\s+([\d\.\-\{_\}]+)\s+to\s+([\d\.\-\{_\}]+)', 'power'),
             (r'(?:to\s+the\s+)?power\s+of\s+([\d\.\-\{_\}]+)', lambda m: ('power', (context or "2", m.group(1)))),
+            (r'uppercase\s+(.+)', lambda m: ('uppercase', (m.group(1),))),
+            (r'lowercase\s+(.+)', lambda m: ('lowercase', (m.group(1),))),
+            (r'length\s+of\s+(.+)', lambda m: ('length', (m.group(1),))),
+            (r'concatenate\s+(.+)\s+and\s+(.+)', lambda m: ('concatenate', (m.group(1), m.group(2)))),
+            (r'replace\s+(.+)\s+with\s+(.+)', lambda m: ('replace', (context or m.group(1), m.group(2)))),
+            (r'square\s+([\d\.\-\{_\}]+)', lambda m: ('square', (m.group(1),))),
+            (r'square\s+root\s+of\s+([\d\.\-\{_\}]+)', lambda m: ('square_root', (m.group(1),))),
         ]
         
         for pattern, tool_info in patterns:
