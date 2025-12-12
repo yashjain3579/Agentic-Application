@@ -24,7 +24,67 @@ cd Agentic-Application
 
 ### Step 2: Test It (Choose ONE)
 
-#### Option A: Run All 39 Tests (RECOMMENDED)
+#### Option A: Quick Test (Run Included test.py)
+
+```bash
+python test.py
+```
+
+**You should see:**
+```
+Test 1: Add 5 and 10
+Result: 15
+
+Test 2: Add 5 and 10, then multiply by 2
+Result: 30
+
+Test 3: Multiply 5 and 4, then to the power of 2
+Result: 400
+
+All basic tests passed!
+```
+
+#### Option B: Detailed Test (See Each Step)
+
+```bash
+python test_detailed.py
+```
+
+**You should see each operation with detailed steps:**
+```
+============================================================
+TEST 1: Simple Math
+============================================================
+[Step details shown here...]
+Final Result: 15
+```
+
+#### Option C: Command Line (Try Any Operation)
+
+Run any operation directly without changing files:
+
+```bash
+python -m agentic_app "Add 5 and 10"
+```
+
+**Output:**
+```
+Result: 15
+```
+
+More examples:
+```bash
+python -m agentic_app "Multiply 10 and 5, then divide by 2"
+# Result: 25
+
+python -m agentic_app "Add 10 and 5, then multiply by 2, then to the power of 2"
+# Result: 900
+
+python -m agentic_app "Uppercase hello world"
+# Result: HELLO WORLD
+```
+
+#### Option D: Full Test Suite (39 Tests)
 
 ```bash
 pip install pytest
@@ -36,68 +96,16 @@ python -m pytest tests/ -v
 ======================== 39 passed in 0.XX seconds ========================
 ```
 
-#### Option B: Quick Test (Simplest - No pytest needed)
-
-Create a file called `test.py`:
-
-```python
-from agentic_app import create_app
-
-app = create_app()
-
-# Test 1
-print(app.query("Add 5 and 10"))  # Output: 15
-
-# Test 2  
-print(app.query("Add 5 and 10, then multiply by 2"))  # Output: 30
-
-# Test 3
-print(app.query("Multiply 5 and 4, then to the power of 2"))  # Output: 400
-```
-
-Then run it:
-
-```bash
-python test.py
-```
-
-#### Option C: Detailed Test (See Each Step)
-
-Create a file called `test_detailed.py`:
-
-```python
-from agentic_app import create_app
-
-app = create_app(verbose=True)
-
-print("\n=== Test 1: Simple Math ===")
-result = app.query("Add 5 and 10")
-print(f"Final Result: {result}\n")
-
-print("=== Test 2: Chain Operations ===")
-result = app.query("Multiply 10 and 5, then divide by 2")
-print(f"Final Result: {result}\n")
-
-print("=== Test 3: Complex ===")
-result = app.query("Add 10 and 5, then multiply by 2, then to the power of 2")
-print(f"Final Result: {result}\n")
-```
-
-Run it:
-
-```bash
-python test_detailed.py
-```
-
 ### Which Option To Choose?
 
-| Option | What It Does |
-|--------|-------------|
-| **A** | Runs all 39 tests - BEST FIRST TIME! |
-| **B** | Quick manual test in 5 seconds |
-| **C** | Shows you what's happening at each step |
+| Option | What It Does | Time |
+|--------|-------------|------|
+| **A** | Pre-made tests - SIMPLEST! | 1 sec |
+| **B** | See step-by-step execution | 2 sec |
+| **C** | Try custom operations | Real-time |
+| **D** | Run all 39 tests | 5 sec |
 
-**Recommendation:** Start with **Option A** - it proves everything works!
+**Recommendation:** Start with **Option A** - just run it!
 
 ---
 
