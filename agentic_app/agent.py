@@ -137,6 +137,7 @@ class Agent:
         
         patterns = [
             (r'add\s+([\d\.\-\{_\}]+)\s+(?:and|to)?\s+([\d\.\-\{_\}]+)', 'add'),
+            (r'add\s+([\d\.\-\{_\}]+)(?:\s|$)', lambda m: ('add', (context or "0", m.group(1)))),
             (r'subtract\s+([\d\.\-\{_\}]+)\s+from\s+([\d\.\-\{_\}]+)', lambda m: ('subtract', (m.group(2), m.group(1)))),
             (r'subtract\s+([\d\.\-\{_\}]+)', lambda m: ('subtract', (context or "0", m.group(1)))),
             (r'multiply\s+([\d\.\-\{_\}]+)\s+(?:and|with|by)\s+([\d\.\-\{_\}]+)', 'multiply'),
